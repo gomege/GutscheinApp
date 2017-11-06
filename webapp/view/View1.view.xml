@@ -1,0 +1,69 @@
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" controllerName="gutscheingutscheinApp.controller.View1" displayBlock="true">
+	<App>
+		<pages>
+			<Page title="{i18n>title}" id="page01_Id">
+			<headerContent>
+			</headerContent>
+			<content>
+			    <ObjectHeader title="Gutschein Nr" number="123" numberUnit="eur" intro="Gutschein Info" introActive="true" titleActive="false" id="page01header_Id" responsive="" icon="sap-icon://commission-check">
+			        <statuses>
+			            <ObjectStatus text="status text" id="status_Id" title="Gultigkeit"/>
+			        </statuses>
+			    </ObjectHeader>
+			    <Panel id="panel_Id">
+					<content>
+					    <f:SimpleForm width="auto" class="sapUiResponsiveMargin" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1" columnsM="1" title="Gutscheindaten eingeben">
+							<f:content>
+								<Label text="Gutschein Nummer" textAlign="Center"/>
+								<Input width="100%" id="input01" placeholder="Gutscheinnummer bitte hier eintragen" value="{0/GutscheinNr}"/>
+								<Label text="Betrag zum Einlösen:"/>
+								<Input width="100%" id="input02" placeholder="Betrag in Euro eintragen"/>
+								<Label text="Datum:"/>
+								<DatePicker width="100%" id="datepicker01"/>
+								<Label text="Rechnungsnummer:"/>
+								<Input width="100%" id="input03" placeholder="Rechnungsnummer"/>
+							</f:content> 
+						</f:SimpleForm>
+					</content>
+			    </Panel>
+			    <Table noDataText="Gutschein noch nicht eingelöst" id="rechnlistId" items="{
+					path: '/rechnungen',
+					sorter: {
+						path: 'Einloesungsdatum',
+						descending: false
+					},
+					parameters: {
+						'expand': 'Rechnung'
+					}
+				}" headerText="Vergangene Einlösungen">
+			        <items>
+			            <ColumnListItem id="__item0">
+			                <cells>
+			                    <Text text="Row 1 Cell 1" id="__text24"/>
+			                    <Text text="Row 1 Cell 2" id="__text25"/>
+			                    <Text text="Row 1 Cell 3" id="__text26"/></cells>
+			            </ColumnListItem>
+		            </items>
+			        <columns>
+			            <Column id="__column0">
+			                <header>
+			                    <Label text="Rechnungsnummer" id="__label1"/>
+			                </header>
+			            </Column>
+			            <Column id="__column1">
+			                <header>
+			                    <Label text="Datum" id="__label2"/>
+			                </header>
+			            </Column>
+			            <Column id="__column2">
+			                <header>
+			                    <Label text="Betrag" id="__label3"/>
+			                </header>
+			            </Column>
+		            </columns>
+	            </Table>
+			</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

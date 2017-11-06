@@ -1,0 +1,8 @@
+[{
+	"GutscheinID": 1,
+	"GutscheinNr": 123456789,
+	"GutschBetrag": 1000,
+	"RestBetrag": 1000,
+	"Curr": "eur",
+	"Date": "/Date(1502748000000)/"
+}]

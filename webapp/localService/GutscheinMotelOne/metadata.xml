@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="GutscheinMotelOne">
+            <EntityType Name="Rechnung">
+                <Key>
+                    <PropertyRef Name="RechnungID"/>
+                </Key>
+                <Property Name="RechnungID" Nullable="false" Type="Edm.Int32"/>
+                <Property Name="Buchungskreis" Type="Edm.String"/>
+                <Property Name="BkHotel" Type="Edm.String"/>
+                <Property Name="Einloesungsdatum" Type="Edm.DateTime"/>
+                <Property Name="Einloesungsvalue" Type="Edm.String"/>
+                <Property Name="Curr" Type="Edm.String"/>
+                <NavigationProperty FromRole="From_Rechnung" Name="Rechnungen" Relationship="GutscheinMotelOne.RechnungGutschein" ToRole="To_Gutschein"/>
+            </EntityType>
+            <EntityType Name="Gutschein">
+                <Key>
+                    <PropertyRef Name="GutscheinID"/>
+                </Key>
+                <Property Name="GutscheinID" Nullable="false" Type="Edm.Int32"/>
+                <Property Name="GutscheinNr" Type="Edm.Int32"/>
+                <Property Name="GutschBetrag" Type="Edm.String"/>
+                <Property Name="RestBetrag" Type="Edm.String"/>
+                <Property Name="Curr" Type="Edm.String"/>
+                <Property Name="Gultigkeit" Type="Edm.DateTime"/>
+                <Property Name="RechnungID" Type="Edm.Int32"/>
+            </EntityType>
+            <Association Name="RechnungGutschein">
+                <End Multiplicity="1" Role="From_Rechnung" Type="GutscheinMotelOne.Rechnung"/>
+                <End Multiplicity="*" Role="To_Gutschein" Type="GutscheinMotelOne.Gutschein"/>
+            </Association>
+            <EntityContainer Name="default" m:IsDefaultEntityContainer="true">
+                <EntitySet EntityType="GutscheinMotelOne.Rechnung" Name="RechnungSet"/>
+                <EntitySet EntityType="GutscheinMotelOne.Gutschein" Name="GutscheinSet"/>
+                <AssociationSet Association="GutscheinMotelOne.RechnungGutschein" Name="RechnungGutscheinSet">
+                    <End EntitySet="RechnungSet" Role="From_Rechnung"/>
+                    <End EntitySet="GutscheinSet" Role="To_Gutschein"/>
+                </AssociationSet>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
